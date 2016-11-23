@@ -3,7 +3,7 @@
  */
 angular.module('MinimApp').controller('SubjectsCtrl',['$scope','$http','$routeParams' ,function($scope, $http, $routeParams){
     $scope.NewSubject = {};
-
+    $scope.SubjectError = {};
     // when landing on the page, get all subjects
     $http.get('/subjects')
         .success(function(data) {
@@ -19,10 +19,11 @@ angular.module('MinimApp').controller('SubjectsCtrl',['$scope','$http','$routePa
             .success(function(data){
                 $scope.NewSubject = {}; //clear the form
                 $scope.subjects = data;
+                $scope.SubjectError = {};
             })
             .error(function(data){
                 console.log('Error:' + data);
-                $scope.SubjectError = data;
+                $scope.SubjectError = true;
             });
     };
 

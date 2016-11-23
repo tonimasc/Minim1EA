@@ -9,7 +9,7 @@
                     <label for="ex1">Name:</label>
                     <input class="form-control" id="ex1" type="text" ng-model="NewSubject.name" required>
                 </div>
-                <div class="alert alert-danger" ng-if="SubjectError">This subject already exists</div>
+                <div class="alert alert-danger" ng-if="SubjectError == true">This subject already exists</div>
                 <button type="button" class="btn btn-success btn-block" ng-click="CreateSubject()">Crear</button>
                 </form>
             </div>
