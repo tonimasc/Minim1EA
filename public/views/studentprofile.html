@@ -1,0 +1,50 @@
+<div ng-controller="StudentCtrl">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><b>Student Info</b></div>
+            <div class="panel-body">
+                <div class="form-inline">
+                <div class="form-group"><h4><b>Name:</b> {{student.name}}</h4></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                <div class="form-group"><h4><b>Address:</b> {{student.address}}</h4></div>
+                </div>
+            </div>
+            <table class="table">
+                <tr class="info">
+                    <td><b>Phone Contact</b></td>
+                    <td><b>Phone Number</b></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="phone in phones">
+                    <td>{{phone.contact}}</td>
+                    <td>{{phone.number}}</td>
+                    <td><a class="btn btn-danger" ng-click="RemovePhone(phone._id)">Eliminar</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Add Phone</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="ex1">Contact Name:</label>
+                            <input class="form-control" id="ex1" type="text" ng-model="Phone.contact" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ex2">Contact Number:</label>
+                            <input class="form-control" id="ex2" type="text" ng-model="Phone.number" required>
+                        </div>
+                        <button type="button" class="btn btn-success btn-block" ng-click="AddPhone()">New Phone</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>

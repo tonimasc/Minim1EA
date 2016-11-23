@@ -1,0 +1,39 @@
+<div ng-controller="SubjectsCtrl">
+    <div class="col-md-4">
+        <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Create Subject</div>
+            <div class="panel-body">
+                <form>
+                <div class="form-group">
+                    <label for="ex1">Name:</label>
+                    <input class="form-control" id="ex1" type="text" ng-model="NewSubject.name" required>
+                </div>
+                <div class="alert alert-danger" ng-if="SubjectError">This subject already exists</div>
+                <button type="button" class="btn btn-success btn-block" ng-click="CreateSubject()">Crear</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="col-md-8">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Subjects</div>
+        <!-- Table -->
+        <table class="table">
+            <tr class="info">
+                <td>Name</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="subject in subjects | orderBy:'name'">
+                <td>{{subject.name}}</td>
+                <td><a class="btn btn-success" ng-href="#/subject/{{subject._id}}">Ver</a></td>
+                <td><button type="button" class="btn btn-danger" ng-click="DeleteSubject(subject._id)">Eliminar</button></td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+</div>

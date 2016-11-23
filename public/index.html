@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MinimApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Minim1</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- JS -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/MinimApp.js"></script>
+    <script src="js/controllers/StudentsCtrl.js"></script>
+    <script src="js/controllers/SubjectsCtrl.js"></script>
+    <script src="js/controllers/SubjectCtrl.js"></script>
+    <script src="js/controllers/StudentCtrl.js"></script>
+
+
+</head>
+<body>
+<header ng-include="'views/header.html'"></header>
+<ng-view></ng-view>
+
+</body>
+</html>
