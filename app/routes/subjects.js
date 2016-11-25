@@ -10,7 +10,7 @@ router.post('/', function(req, res) {
       res.status(400).send('This subject already exist')
     }
     else{
-      Subject.create({name:req.body.name}, function(err, subject) {
+      Subject.create({name:req.body.name, when: req.body.when}, function(err, subject) {
         if (err)
           res.send(err);
         // get and return all the subjects after you create another
@@ -98,6 +98,38 @@ router.delete('/deletestudent/:subject_id/:student_id', function(req, res) {
   });
 });
 
+//Get a subject by name
+router.get('/search/:name', function(req, res) {
+    console.log(req.params.name);
+  Subject.findOne({name: req.params.name}, function (err, exsistingsubject) {
+    if(exsistingsubject){
+      res.send(exsistingsubject);
+    }
+    else{
+      res.status(400).send(err);
+    }
+  });
+});
 
+//Create a subject
+router.get('/search/when/:season', function(req, res) {
+    console.log(req.params.season);
+    Subject.find({when: req.params.season}, function (err, exsistingsubjects) {
+        if(exsistingsubjects){
+            res.send(exsistingsubjects);
+        }
+        else{
+            res.status(400).send(err);
+        }
+    });
+});
 
+//Create a subject
+router.get('/search/studentsnumber/', function(req, res) {
+    Subject.find().sort({"students": -1}).exec(function(err, subjects) {
+        if (err)
+            res.send(err)
+        res.send(subjects);
+    });
+});
 module.exports = router;

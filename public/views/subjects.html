@@ -1,5 +1,5 @@
 <div ng-controller="SubjectsCtrl">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="col-md-12">
         <div class="panel panel-primary">
             <div class="panel-heading">Create Subject</div>
@@ -9,6 +9,15 @@
                     <label for="ex1">Name:</label>
                     <input class="form-control" id="ex1" type="text" ng-model="NewSubject.name" required>
                 </div>
+                    <div class="form-group">
+                        <label for="sel1">Season:</label>
+                        <select class="form-control" id="sel1" ng-model="NewSubject.when">
+                            <option>Tardor 2016</option>
+                            <option>Primavera 2017</option>
+                            <option>Tardor 2017</option>
+                            <option>Primavera 2018</option>
+                        </select>
+                    </div>
                 <div class="alert alert-danger" ng-if="SubjectError == true">This subject already exists</div>
                 <button type="button" class="btn btn-success btn-block" ng-click="CreateSubject()">Crear</button>
                 </form>
@@ -17,23 +26,91 @@
     </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-6">
     <div class="panel panel-primary">
         <div class="panel-heading">Subjects</div>
+        <div class="panel-body">
+            <div class="col-md-4">
+            <div class="form-group">
+                <label for="sel1">Season:</label>
+                <select class="form-control" id="sel2" ng-model="Season.when">
+                    <option>Tardor 2016</option>
+                    <option>Primavera 2017</option>
+                    <option>Tardor 2017</option>
+                    <option>Primavera 2018</option>
+                </select>
+            </div>
+            </div>
+            <div class="col-md-3">
+            <label></label>
+            <button type="button" class="btn btn-info btn-block" ng-click="SearchSeason()">Filter</button>
+            </div>
+            <div class="col-md-3">
+                <label></label>
+                <button type="button" class="btn btn-info btn-block" ng-click="GetAllSubjects()">See All</button>
+            </div>
+            <div class="col-md-3">
+                <label></label>
+                <button type="button" class="btn btn-info btn-block" ng-click="Order('name')">Order Name</button>
+            </div>
+            <div class="col-md-3">
+                <label></label>
+                <button type="button" class="btn btn-info btn-block" ng-click="Order2()">+ Alums</button>
+            </div>
+            <div class="col-md-7"></div>
+            <div class="col-md-3">
+                <label></label>
+                <button type="button" class="btn btn-info btn-block" ng-click="Order3()">- Alums</button>
+            </div>
+        </div>
         <!-- Table -->
         <table class="table">
             <tr class="info">
                 <td>Name</td>
+                <td>Season</td>
+                <td>Alum Number</td>
                 <td></td>
                 <td></td>
             </tr>
-            <tr ng-repeat="subject in subjects | orderBy:'name'">
+            <tr ng-repeat="subject in subjects | orderBy:OrderDo">
                 <td>{{subject.name}}</td>
+                <td>{{subject.when}}</td>
+                <td>{{subject.students.length}}</td>
                 <td><a class="btn btn-success" ng-href="#/subject/{{subject._id}}">Ver</a></td>
                 <td><button type="button" class="btn btn-danger" ng-click="DeleteSubject(subject._id)">Eliminar</button></td>
             </tr>
         </table>
     </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Search:</div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <label>Subject Name:</label>
+                    <input class="form-control" type="text" ng-model="SubSearch.name" required>
+                </div>
+                <div class="col-md-12">
+                    <label></label>
+                    <button type="button" class="btn btn-success btn-block form-control" ng-click="SearchName()">Search</button>
+                </div>
+            </div>
+            <!-- Table -->
+            <table class="table" ng-if="SubjectFound">
+                <tr class="info">
+                    <td>Name</td>
+                    <td>Season</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{SubjectFound.name}}</td>
+                    <td>{{SubjectFound.when}}</td>
+                    <td><a class="btn btn-success" ng-href="#/subject/{{SubjectFound._id}}">Ver</a></td>
+                </tr>
+            </table>
+        </div>
     </div>
 
 </div>

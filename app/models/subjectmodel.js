@@ -8,7 +8,8 @@ var SubjectSchema = mongoose.Schema({
     name: {
         type: String
     },
-    students: [{type: mongoose.Schema.Types.ObjectId, ref: 'Student' }]
+    students: [{type: mongoose.Schema.Types.ObjectId, ref: 'Student' }],
+    when: String
 
 });
 
