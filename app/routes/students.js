@@ -10,10 +10,15 @@ router.post('/', function(req, res) {
     Student.create({
         name: req.body.name,
         address: req.body.address,
-        phones: {
-            contact: req.body.contact,
-            number: req.body.number
-        }
+        phones: [
+    {
+            contact: req.body.contact1,
+            number: req.body.number1
+    },{
+        contact: req.body.contact2,
+            number: req.body.number2
+    }
+        ]
     }, function(err, student) {
         if (err)
             res.send(err);
