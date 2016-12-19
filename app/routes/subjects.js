@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Subject = require('../models/subjectmodel');
+var Student = require('../models/studentmodel');
 
 //Create a subject
 router.post('/', function(req, res) {
@@ -70,11 +71,22 @@ router.post('/addstudent/:subject_id', function(req, res) {
       res.send(err);
     }
     if(subject){
-      Subject.findById(subject._id).populate('students').exec().then(function(err, subject) {
-        if (err)
-          res.send(err)
-        res.send(subject);
+      var query = {_id: req.body.student_id};
+      var update = {$addToSet : {"subjects" : req.params.subject_id }};
+      var options = {};
+      Student.findOneAndUpdate(query, update, options, function(err, student) {
+        if (err) {
+          res.send(err);
+        }
+        if(student){
+          Subject.findById(subject._id).populate('students').exec().then(function(err, subject) {
+            if (err)
+              res.send(err)
+            res.send(subject);
+          });
+        }
       });
+
     }
   });
 });

@@ -7,6 +7,7 @@ var Student = require('../models/studentmodel');
 
 // Create a student
 router.post('/', function(req, res) {
+
     Student.create({
         name: req.body.name,
         address: req.body.address,
@@ -33,7 +34,7 @@ router.post('/', function(req, res) {
 // Get a student
 router.get('/:student_id', function(req, res) {
     var id = req.params.student_id;
-    Student.findById(id, function(err, student) {
+    Student.findById(id).populate('subjects').exec().then(function(err, student) {
         if (err)
             res.send(err)
         res.send(student);

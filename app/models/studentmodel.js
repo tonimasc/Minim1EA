@@ -21,7 +21,8 @@ var StudentSchema = mongoose.Schema({
                 type: String
             }
         }
-    ]
+    ],
+    subjects: [{type: mongoose.Schema.Types.ObjectId, ref: 'Subject' }]
 });
 
 module.exports = mongoose.model('Student', StudentSchema);
